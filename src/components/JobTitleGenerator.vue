@@ -6,8 +6,6 @@ function getRandomElement<T>(list: Array<T>): T {
 }
 
 const finalTitleOptions = [
-  "Engineer",
-  "Architect",
   "Consultant",
   "Expert",
   "Director",
@@ -19,6 +17,11 @@ const finalTitleOptions = [
   "Head",
   "Agile Coach",
   "Account Manager",
+  "Advocate",
+  "Evangelist",
+  "Coach",
+  "Technician",
+  "Designer",
 ];
 const adjectiveOptions = [
   "Support Desk",
@@ -27,9 +30,23 @@ const adjectiveOptions = [
   "Consulting",
   "Devops",
   "Security",
+  "Technology",
+  "Functional",
+  "Data",
+  "Innovation",
+  "Happiness",
+  "Retail",
+  "Content",
+  "Marketing",
+  "Change Management",
+  "Technical",
+  "Customer Relations",
+  "UX",
+  "UI",
+  "IT",
+  "Infrastructure",
 ];
 const twoPartAdjectiveFirstOptions = [
-  "Change",
   "Business",
   "Digital",
   "Domain",
@@ -46,6 +63,14 @@ const twoPartAdjectiveFirstOptions = [
   "Security",
   "Management",
   "Service Delivery",
+  "Technology",
+  "Functional",
+  "Data",
+  "Retail",
+  "Dynamic",
+  "Regional",
+  "UX",
+  "UI",
 ];
 const twoPartAdjectiveSecondOptions = [
   "Management",
@@ -55,9 +80,26 @@ const twoPartAdjectiveSecondOptions = [
   "Service Delivery",
   "Product Lifecycle",
   "Security",
+  "Technology",
+  "Data",
+  "Innovation",
+  "Content",
+  "Marketing",
+  "Excellence",
+  "Quality",
+  "Response",
+  "Intelligence",
+  "Usability",
 ];
 const rankOptions = ["Junior", "Senior", "Experienced", "Expert"];
-const prefixOptions = ["Vice", "Assisting", "Chief", "Lead"];
+const prefixOptions = [
+  "Vice",
+  "Assisting",
+  "Chief",
+  "Lead",
+  "Principal",
+  "Creative",
+];
 
 const title = ref("Click generate!");
 
@@ -71,14 +113,17 @@ function generateTwoPartAdjective() {
 }
 
 function generate() {
-  const isManager = Math.random() > 0.8;
+  let preselectedFinal = "";
+  const firstRandom = Math.random();
+  if (firstRandom > 0.85) preselectedFinal = "Manager";
+  else if (firstRandom > 0.7) preselectedFinal = "Engineer";
+  else if (firstRandom > 0.6) preselectedFinal = "Architect";
+  else if (firstRandom > 0.5) preselectedFinal = "Consultant";
   const getsPrefix = Math.random() > 0.5;
   const getsRank = Math.random() > 0.5;
   const makeTwoPartAdjective = Math.random() > 0.5;
 
-  const finalTitle = isManager
-    ? "Manager"
-    : getRandomElement(finalTitleOptions);
+  const finalTitle = preselectedFinal || getRandomElement(finalTitleOptions);
 
   const adjective = makeTwoPartAdjective
     ? generateTwoPartAdjective()
